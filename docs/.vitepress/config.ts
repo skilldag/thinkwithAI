@@ -1,4 +1,20 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.vuejs.org/config/app-configs
-export default defineConfig({})
+export default defineConfig({
+  title: "My Blog",
+  description: "A personal blog",
+  themeConfig: {
+    nav: [
+      { text: 'Home', link: '/' },
+      { text: 'Posts', link: '/posts/' }
+    ],
+    sidebar: [
+      {
+        text: 'Posts',
+        items: [
+          { text: 'My First Post', link: '/posts/first-post' }
+        ]
+      }
+    ]
+  }
+})

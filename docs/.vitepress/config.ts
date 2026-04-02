@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "My Blog",
   description: "A personal blog",
+  base: '/thinkwithAI/',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },

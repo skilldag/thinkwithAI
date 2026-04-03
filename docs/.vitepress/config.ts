@@ -23,7 +23,8 @@ export default defineConfig({
               { text: 'DeepSeek Research Skill 设计思路', link: '/posts/deepseek-research' },
               { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' },
               { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
-              { text: 'OpenCode Sessions 解析', link: '/posts/opencode-sessions' }
+              { text: 'OpenCode Sessions 解析', link: '/posts/opencode-sessions' },
+              { text: 'Claw Code：如何在24小时内获得10万Star', link: '/posts/claw-code-omx-100k-stars' }
             ]
           },
           {

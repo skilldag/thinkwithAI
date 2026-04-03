@@ -19,10 +19,10 @@ export default defineConfig({
             link: '/posts/ai-generated-blog-workflow',
             items: [
               { text: 'AI Blog Generator Skill 设计思路', link: '/posts/ai-blog-generator' },
-              { text: 'DeepSeek Research Skill 设计思路', link: '/posts/deepseek-research' }
+              { text: 'DeepSeek Research Skill 设计思路', link: '/posts/deepseek-research' },
+              { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' }
             ]
           },
-          { text: 'OpenCode 全面指南', link: '/posts/opencode-guide' },
           { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
           { 
             text: '本地编码大模型实践指南', 
@@ -31,8 +31,7 @@ export default defineConfig({
               { text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', link: '/posts/qwen3-coder-next-rtx3090' },
               { text: 'RTX 3090 运行 DeepSeek-Coder-33B 模型指南', link: '/posts/rtx3090-deepseek-coder-33b' }
             ]
-          },
-          { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' }
+          }
         ]
       }
     ]

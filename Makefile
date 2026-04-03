@@ -1,4 +1,4 @@
-.PHONY: install build deploy clean
+.PHONY: install build deploy preview clean
 
 install:
 	pnpm install
@@ -13,6 +13,9 @@ deploy:
 	git add -A
 	git commit -m "feat: 更新博客" || true
 	git push origin gh-pages
+
+preview:
+	pnpm dev
 
 clean:
 	rm -rf docs/.vitepress/dist/

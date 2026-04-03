@@ -29,8 +29,7 @@ export default defineConfig({
             link: '/posts/local-coding-llm-practice',
             items: [
               { text: 'RTX 3090 编程大模型横评', link: '/posts/rtx3090-llm-benchmark' },
-              { text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', link: '/posts/qwen3-coder-next-rtx3090' },
-              { text: 'RTX 3090 运行 DeepSeek-Coder-33B 模型指南', link: '/posts/rtx3090-deepseek-coder-33b' }
+              { text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', link: '/posts/qwen3-coder-next-rtx3090' }
             ]
           }
         ]

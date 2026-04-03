@@ -4,12 +4,10 @@
 
 ## 概述
 
-本文档讨论以下主题：
+本文讨论以下主题：
 - RTX 3090 能否运行 DeepSeek-Coder-33B 模型
 - 不同量化格式的选择
 - 上下文长度的计算
-- Ubuntu vs Windows 安装选择
-- WSL 上 Ollama 网络访问配置
 
 ## RTX 3090 能否运行 DeepSeek-Coder-33B
 
@@ -61,67 +59,6 @@ DeepSeek-Coder-33B 量化版本：
        --cache-type-q q4_0
 ```
 
-## Ubuntu vs Windows 安装 Ollama
-
-### 对比表
-
-| 对比维度 | Ubuntu (推荐) | Windows |
-|----------|---------------|---------|
-| 显存占用 | 更低 (~2MB) | 固定占用 ~1.5GB |
-| 性能表现 | 更优 | 相对受限 |
-| 大模型生态 | 原生支持 | 完全支持 |
-| 上手难度 | 稍高 | 更容易 |
-
-### 推荐安装方式
-
-**路径一（强烈推荐）**：直接在 Ubuntu 安装
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```
-
-**路径二（折中方案）**：WSL2 + Ubuntu
-
-## WSL 上 Ollama 网络访问配置
-
-### 问题
-
-WSL2 默认使用 NAT 模式，其他设备无法直接访问。
-
-### 解决方案
-
-#### 方案一：端口转发（推荐）
-
-1. 设置 Ollama 监听所有接口：
-```bash
-echo "export OLLAMA_HOST=0.0.0.0:11434" >> ~/.bashrc
-```
-
-2. 获取 WSL IP：
-```bash
-hostname -I
-```
-
-3. Windows 端口转发（管理员 PowerShell）：
-```bash
-netsh interface portproxy add v4tov4 listenport=11434 listenaddress=0.0.0.0 connectport=11434 connectaddress=<WSL_IP>
-```
-
-4. 配置防火墙：
-```bash
-New-NetFirewallRule -DisplayName "Allow Ollama on WSL" -Direction Inbound -Action Allow -Protocol TCP -LocalPort 11434
-```
-
-#### 方案二：桥接模式
-
-修改 `.wslconfig` 文件：
-```ini
-[wsl2]
-networkingMode=bridged
-vmSwitch=<交换机名称>
-```
-
 ## 总结
 
 - RTX 3090 可以运行 DeepSeek-Coder-33B，推荐使用 GGUF 格式 q4_k_m 量化
-- Ubuntu 是更优的系统选择
-- 通过 WSL 访问时需要配置端口转发

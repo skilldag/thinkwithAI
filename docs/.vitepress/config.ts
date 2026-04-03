@@ -22,7 +22,8 @@ export default defineConfig({
               { text: 'DeepSeek Research Skill 设计思路', link: '/posts/deepseek-research' }
             ]
           },
-          { text: 'OpenCode 全面指南', link: '/posts/opencode-guide' }
+          { text: 'OpenCode 全面指南', link: '/posts/opencode-guide' },
+          { text: '本地编码大模型实践指南', link: '/posts/local-coding-llm-practice' }
         ]
       }
     ]

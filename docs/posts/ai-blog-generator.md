@@ -58,6 +58,59 @@ A: 需要审核机制，复杂的拆分，简单的合并
 - 最终方案：从调研中提取的方案
 - 总结：局限性和改进空间
 
+### 更新 Sidebar 配置
+
+生成文章后，需要手动更新 `docs/.vitepress/config.ts` 中的 sidebar 配置。
+
+#### 父子关系设置
+
+使用 `items` 数组创建父子结构：
+
+```typescript
+sidebar: [
+  {
+    text: 'Posts',
+    items: [
+      { 
+        text: '父文章标题', 
+        link: '/posts/父文章路径',
+        items: [
+          { text: '子文章标题1', link: '/posts/子文章路径1' },
+          { text: '子文章标题2', link: '/posts/子文章路径2' }
+        ]
+      }
+    ]
+  }
+]
+```
+
+#### 索引与文章名对齐要求
+
+1. **sidebar 标题必须与文章 H1 标题一致**
+   - 打开生成的 `.md` 文件，第一行 `#` 后面的标题即为文章标题
+   - 将此标题复制到 sidebar 的 `text` 字段
+
+2. **检查示例**
+
+```typescript
+// 文章文件：docs/posts/qwen3-coder-next-rtx3090.md
+// 内容：# Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南
+// 配置：
+{ 
+  text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', 
+  link: '/posts/qwen3-coder-next-rtx3090' 
+}
+```
+
+3. **常见错误**
+   - sidebar 写"本地大模型"，文章标题是"本地编码大模型实践指南" → 不对齐
+   - 父分组名称与子文章标题无关 → 混乱
+
+4. **构建后验证**
+   - 运行 `pnpm build` 构建站点
+   - 将 `docs/.vitepress/dist/*` 复制到 `docs/`
+   - 提交推送后刷新页面检查
+
 ## 总结
 
 - 问题解决了吗？基本解决，生成的文章更有结构

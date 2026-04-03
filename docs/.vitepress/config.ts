@@ -14,19 +14,22 @@ export default defineConfig({
         text: 'Posts',
         items: [
           { text: '我的 AI 实践笔记', link: '/posts/first-post' },
-          { 
-            text: 'AI 生成博客工作流', 
+          {
+            text: 'AI 生成博客工作流',
             link: '/posts/ai-generated-blog-workflow',
+            collapsible: true,
             items: [
               { text: 'AI Blog Generator Skill 设计思路', link: '/posts/ai-blog-generator' },
               { text: 'DeepSeek Research Skill 设计思路', link: '/posts/deepseek-research' },
-              { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' }
+              { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' },
+              { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
+              { text: 'OpenCode Sessions 解析', link: '/posts/opencode-sessions' }
             ]
           },
-          { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
-          { 
-            text: '本地编码大模型实践指南', 
+          {
+            text: '本地编码大模型实践指南',
             link: '/posts/local-coding-llm-practice',
+            collapsible: true,
             items: [
               { text: 'RTX 3090 编程大模型横评', link: '/posts/rtx3090-llm-benchmark' },
               { text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', link: '/posts/qwen3-coder-next-rtx3090' }

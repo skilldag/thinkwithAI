@@ -38,8 +38,14 @@ export default defineConfig({
       {
         text: 'Harness',
         items: [
-          { text: 'Harness Engineer', link: '/harness/harness-engineer' },
-          { text: 'Claw Code：如何在24小时内获得10万Star', link: '/harness/claw-code-omx-100k-stars' }
+          {
+            text: 'Harness Engineer',
+            link: '/harness/harness-engineer',
+            collapsible: true,
+            items: [
+              { text: 'Claw Code：如何在24小时内获得10万Star', link: '/harness/claw-code-omx-100k-stars' }
+            ]
+          }
         ]
       }
     ]

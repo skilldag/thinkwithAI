@@ -135,6 +135,7 @@ git push origin gh-pages
 
 - **cdp-scrape**: 搜索调研结果
 - **deepseek-research**: 调研工作流（调研由用户自行完成）
+- **opencode-sessions**: OpenCode 会话分析（分析 OpenCode 工作过程）
 
 ## 注意事项
 
@@ -143,3 +144,96 @@ git push origin gh-pages
 - 确保 sidebar 配置正确
 - 验证构建: `pnpm build`
 - **重要**：构建后必须将 `docs/.vitepress/dist/` 下的文件复制到 `docs/` 目录再提交
+
+---
+
+## 附加：OpenCode 会话分析工作流
+
+用于分析 OpenCode 会话，生成技术博客文章。
+
+### 使用场景
+
+当用户想要将 OpenCode 使用过程整理成技术文章时使用。
+
+### 工作流程
+
+#### 第一步：确定主题
+
+用户描述想要记录的主题，例如：
+- "用 Nim 实现 OpenCode 会话查询工具"
+- "OpenCode SQLite 数据库结构分析"
+
+#### 第二步：查询相关会话
+
+使用 opencode-sessions 工具查询相关会话：
+
+```bash
+# 列出所有会话（默认 20 条）
+opencode-sessions
+
+# 列出更多会话
+opencode-sessions --list 50
+
+# 分页查看（从第 20 条开始）
+opencode-sessions --offset 20 --limit 30
+
+# 获取会话内容
+opencode-sessions <session_id>
+
+# 导出会话到文本文件
+opencode-sessions <session_id> -o
+```
+
+#### 第三步：提取关键信息
+
+从会话中提取：
+- 遇到的问题和挑战
+- 尝试的解决方案
+- 最终的技术实现
+- 代码片段和配置
+
+#### 第四步：生成技术文章
+
+按照文章模板生成，确保包含：
+- 场景描述：为什么需要这个工具
+- 需求分析：要实现什么功能
+- 实现过程：技术选型和代码实现
+- 总结：经验教训和后续改进
+
+### 示例主题
+
+- "Nim + SQLite 实现 OpenCode 会话管理工具"
+- "OpenCode 数据库结构深度解析"
+- "CLI 工具开发实战：从需求到发布"
+
+### 注意事项
+
+- 保持问题驱动的写作风格
+- 记录真实的探索过程，包括失败的尝试
+- 包含关键代码片段和使用示例
+- 可以链接到开源项目或 GitHub 仓库
+
+## OpenCode 会话分析工作流
+
+仅使用 `opencode-sessions` 工具，无需手动执行 `sqlite3`。流程如下：
+
+1. **确定主题** – 例如 `用 Nim 实现 OpenCode 会话查询工具`。
+2. **搜索会话** – 通过 `opencode-sessions` 列表或搜索感兴趣的会话。
+3. **查看内容** – 使用 `opencode-sessions <session_id>` 直接查看完整对话。
+4. **导出文本** – `opencode-sessions <session_id> -o` 导出为 `.txt`，方便后续整理。
+5. **生成博客** – 按照 AI Blog Generator 的模板，将对话转化为技术文章。
+
+示例：
+
+```bash
+# 列出最近 skilldag 相关会话
+opencode-sessions --list 50
+
+# 选择会话
+opencode-sessions ses_xxx
+
+# 导出
+opencode-sessions ses_xxx -o
+```
+
+导出的文件包含完整的 User/Assistant 交互，可直接粘贴进 Markdown 并生成技术文档。

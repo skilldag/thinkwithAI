@@ -12,6 +12,7 @@
 - [AI 生成博客工作流](/posts/ai-generated-blog-workflow) - AI 生成博客的工作流程
 - [AI Blog Generator Skill 设计思路](/posts/ai-blog-generator) - AI 生成博客工作流 skill
 - [DeepSeek Research Skill 设计思路](/posts/deepseek-research) - DeepSeek Share 存储、聚类、查询工具
+- [RTX 3090 编程大模型实测对比](/posts/rtx3090-llm-benchmark) - 4 个本地大模型横向评测
 - [Qwen3-Coder-Next RTX 3090 优化指南](/posts/qwen3-coder-next-rtx3090) - MoE 模型优化方案
 
 ## 关注我

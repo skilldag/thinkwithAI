@@ -24,10 +24,15 @@ export default defineConfig({
           },
           { text: 'OpenCode 全面指南', link: '/posts/opencode-guide' },
           { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
-          { text: '本地编码大模型实践指南', link: '/posts/local-coding-llm-practice' },
-          { text: 'Qwen3 Coder Next + RTX 3090', link: '/posts/qwen3-coder-next-rtx3090' },
-          { text: 'RTX 3090 + DeepSeek Coder 33B', link: '/posts/rtx3090-deepseek-coder-33b' },
-          { text: 'Chrome DevTools Protocol 自动化', link: '/posts/chrome-devtools-protocol' }
+          { 
+            text: '本地大模型', 
+            link: '/posts/local-coding-llm-practice',
+            items: [
+              { text: 'Qwen3 Coder Next + RTX 3090', link: '/posts/qwen3-coder-next-rtx3090' },
+              { text: 'RTX 3090 + DeepSeek Coder 33B', link: '/posts/rtx3090-deepseek-coder-33b' },
+              { text: 'Chrome DevTools Protocol 自动化', link: '/posts/chrome-devtools-protocol' }
+            ]
+          }
         ]
       }
     ]

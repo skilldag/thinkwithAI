@@ -28,9 +28,9 @@ export default defineConfig({
             text: '本地大模型', 
             link: '/posts/local-coding-llm-practice',
             items: [
-              { text: 'Qwen3 Coder Next + RTX 3090', link: '/posts/qwen3-coder-next-rtx3090' },
-              { text: 'RTX 3090 + DeepSeek Coder 33B', link: '/posts/rtx3090-deepseek-coder-33b' },
-              { text: 'Chrome DevTools Protocol 自动化', link: '/posts/chrome-devtools-protocol' }
+              { text: 'Qwen3-Coder-Next 在 RTX 3090 上的运行问题与优化指南', link: '/posts/qwen3-coder-next-rtx3090' },
+              { text: 'RTX 3090 运行 DeepSeek-Coder-33B 模型指南', link: '/posts/rtx3090-deepseek-coder-33b' },
+              { text: '使用 CDP 对 DeepSeek 网页对话数据建档', link: '/posts/chrome-devtools-protocol' }
             ]
           }
         ]

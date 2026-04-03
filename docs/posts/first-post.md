@@ -1,7 +1,14 @@
-# My First Post
+# 我的 AI 实践笔记
 
-Welcome to my blog! This is my first post.
+记录每天使用 AI 的一些想法和实践。
 
-## About
+## 关于
 
-This is a personal blog built with VitePress.
+这是一个个人博客，用于记录我每天使用 AI 的想法和实践。内容包括：
+
+- AI 工具使用技巧
+- AI 生成内容的工作流
+- AI 辅助编程的心得
+- 各种 AI 应用的尝试
+
+持续更新中...

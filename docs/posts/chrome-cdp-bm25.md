@@ -1,12 +1,17 @@
-# 使用 CDP 对 DeepSeek 网页对话数据建档
+---
+title: Chrome CDP 与 BM25 数据建档
+description: 使用 Chrome DevTools Protocol 获取数据与 BM25 索引检索的完整方案
+---
 
-使用 Chrome DevTools Protocol (CDP) 对 DeepSeek 网页对话进行数据建档，实现调研内容的结构化存储和查询。
+# Chrome CDP 与 BM25 数据建档
+
+使用 Chrome DevTools Protocol (CDP) 对网页数据进行数据建档，配合 BM25 进行结构化存储和查询。
 
 ## 核心思路
 
 ### 1. 数据获取
 
-使用 CDP 连接 DeepSeek 网页版，获取对话数据：
+使用 CDP 连接网页版 DeepSeek，获取对话数据：
 
 ```nim
 import cdp
@@ -27,8 +32,6 @@ let messages = await tab.evaluate("""
 ```
 
 #### Agent 可操作列表
-
-CDP 支持查询当前页面可用的操作：
 
 | 操作 | CDP 命令 | 说明 |
 |------|----------|------|
@@ -55,7 +58,7 @@ CDP 支持查询当前页面可用的操作：
       "timestamp": "..."
     },
     {
-      "role": "assistant", 
+      "role": "assistant",
       "content": "回答内容",
       "links": ["参考链接"]
     }
@@ -81,3 +84,42 @@ top_results = bm25.get_top_n(query, corpus, n=3)
 
 ## 工作流程
 
+### Step 1: 启动浏览器
+
+```bash
+chrome --remote-debugging-port=9222 --headless
+```
+
+### Step 2: 连接 CDP
+
+```nim
+let browser = await launchBrowser()
+let tab = await browser.newTab()
+```
+
+### Step 3: 获取对话
+
+```nim
+# 获取所有消息
+let messages = await extractMessages(tab)
+
+# 提取参考链接
+let links = await extractLinks(tab)
+```
+
+### Step 4: 存储建档
+
+```python
+# 保存到本地
+save_to_json(messages, "conversation.json")
+
+# 建立 BM25 索引
+index_messages(messages)
+```
+
+### Step 5: 查询检索
+
+```python
+# BM25 查询
+results = query("调研主题", top_k=5)
+```

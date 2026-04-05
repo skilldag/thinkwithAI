@@ -6,14 +6,36 @@
 
 这个博客记录了我每天使用 AI 工具的想法和实践。
 
-## 最新文章
+## 博客工作流
 
-- [我的 AI 实践笔记](/posts/first-post) - 记录每天使用 AI 的想法和实践
-- [AI 生成博客工作流](/posts/ai-generated-blog-workflow) - AI 生成博客的工作流程
-- [AI Blog Generator Skill 设计思路](/posts/ai-blog-generator) - AI 生成博客工作流 skill
+- [AI 生成博客工作流](/posts/ai-generated-blog-workflow) - AI 生成博客的完整工作流
+- [AI Blog Generator Skill 设计思路](/posts/ai-blog-generator) - AI 生成博客工作流 Skill 实现
 - [DeepSeek Research Skill 设计思路](/posts/deepseek-research) - DeepSeek Share 存储、聚类、查询工具
-- [RTX 3090 编程大模型实测对比](/posts/rtx3090-llm-benchmark) - 4 个本地大模型横向评测
+
+## 本地编码大模型
+
+- [本地编码大模型指南](/posts/local-coding-llm-practice) - 硬件基础与模型选择
+- [编程大模型优化方案](/posts/local-coding-llm-optimization) - 详细的优化策略和量化格式对比
+
+## 模型测评
+
+- [RTX 3090 编程大模型横评](/posts/rtx3090-llm-benchmark) - 4 个本地大模型横向评测
 - [Qwen3-Coder-Next RTX 3090 优化指南](/posts/qwen3-coder-next-rtx3090) - MoE 模型优化方案
+
+## OpenCode
+
+- [OpenCode 使用指南](/posts/opencode-guide) - OpenCode Skill 和工具集使用文档
+- [OpenCode Sessions CLI](/posts/opencode-sessions) - 会话查询与导出工具
+- [OpenCode 存储结构](/posts/opencode-storage-structure) - 存储目录详解
+
+## Chrome CDP
+
+- [Chrome CDP 数据建档](/posts/chrome-devtools-protocol) - CDP 自动化方案
+- [Chrome CDP 与 BM25](/posts/chrome-cdp-bm25) - 数据获取与索引检索
+
+## 研发思考
+
+- [产品引导研发](/posts/product-driven-rd) - 产品需求驱动技术决策
 
 ## 关注我
 

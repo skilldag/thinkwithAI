@@ -42,7 +42,8 @@ export default defineConfig({
           { text: 'OpenCode 源码编译与使用问题', link: '/posts/opencode-usage-problems' },
           { text: 'OpenCode Sessions CLI', link: '/posts/opencode-sessions' },
           { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
-          { text: '重新认识 Oh My OpenCode', link: '/posts/oh-my-opencode-understanding' }
+          { text: '重新认识 Oh My OpenCode', link: '/posts/oh-my-opencode-understanding' },
+          { text: '深入理解 Oh My OpenCode 核心机制', link: '/posts/oh-my-opencode-core-mechanism' }
         ]
       },
       {

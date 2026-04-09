@@ -24,3 +24,7 @@ description: 在本地部署编程大模型的完整实践指南
 
 - [RTX 3090 编程大模型横评](/posts/rtx3090-llm-benchmark) - 4 个模型横向评测和代码质量对比
 - [Qwen3-Coder-Next RTX 3090 优化指南](/posts/qwen3-coder-next-rtx3090) - MoE 模型显存问题与解决方案
+
+## AI 编程实践
+
+- [引导AI从根本上解决Bug](/posts/how-to-debug-and-solve-problems) - 如何让大模型理解代码和bug，避免表面修复

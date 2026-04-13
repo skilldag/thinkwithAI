@@ -50,7 +50,8 @@ export default defineConfig({
 {
     text: '研发思考',
     items: [
-      { text: '产品引导研发', link: '/posts/product-driven-rd' }
+      { text: '产品引导研发', link: '/posts/product-driven-rd' },
+      { text: 'Feature-Nav: 代码全局寻踪', link: '/posts/feature-nav-exploration' }
     ]
   },
   {

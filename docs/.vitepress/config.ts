@@ -47,12 +47,20 @@ export default defineConfig({
       { text: 'ULW Loop CLI 程序验证思路', link: '/posts/ulw-loop-cli-verification' }
       ]
       },
-      {
-        text: '研发思考',
-        items: [
-          { text: '产品引导研发', link: '/posts/product-driven-rd' }
-        ]
-      },
+{
+    text: '研发思考',
+    items: [
+      { text: '产品引导研发', link: '/posts/product-driven-rd' }
+    ]
+  },
+  {
+    text: '禅修心法',
+    link: '/posts/zen-awareness-emptiness',
+    collapsible: true,
+    items: [
+      { text: '觉照、妄念与无念无觉', link: '/posts/zen-awareness-emptiness' }
+    ]
+  },
       {
         text: 'Harness',
         link: '/harness/harness-engineer',

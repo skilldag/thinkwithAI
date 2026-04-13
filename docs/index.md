@@ -35,6 +35,10 @@
 - [产品引导研发](/posts/product-driven-rd) - 产品需求驱动技术决策
 - [如何 Debug 和解决问题](/posts/how-to-debug-and-solve-problems) - 引导 AI 从根本上解决 Bug
 
+## 禅修心法
+
+- [从心理发展到佛教哲学：对"佛、念、我"的系统性重新整理](/posts/buddhism-awareness-awakening) - 从发展心理学到佛学，探究"我执"本质，最终归结于"念起觉知"
+
 ## Harness
 
 - [Harness Engineer](/harness/harness-engineer) - Harness 工程师的技能树

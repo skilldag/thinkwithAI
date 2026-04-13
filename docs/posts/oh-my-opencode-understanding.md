@@ -6,17 +6,17 @@ date: 2026-04-09
 
 # 重新认识 Oh My OpenCode：我的 AI 编程助手从单兵作战到团队协作
 
-> 我是怎么开始关注 Oh My OpenCode 的？一切源于一次意外发现的 Easter Egg。
+> 一切源于一次意外发现的 Easter Egg。
 
 ## 问题背景
 
-作为一个长期使用 Claude Code 和 OpenCode 的开发者，我一直把它们当作单个 AI 助手来看待。虽然功能强大，但总觉得缺少点什么——像是有一个全能但不够专业的助手，而不是一个真正的团队。
+作为一个长期使用 Claude Code 和 OpenCode 的开发者，一直把它们当作单个 AI 助手来看待。虽然功能强大，但总觉得缺少点什么——像是有一个全能但不够专业的助手，而不是一个真正的团队。
 
-直到最近，我发现了一个有趣的 Easter Egg，意外解锁了对 Oh My OpenCode 的重新认识。
+直到最近，发现了一个有趣的 Easter Egg，意外解锁了对 Oh My OpenCode 的重新认识。
 
-## 探究过程
+## 分析与发现
 
-### 第一次发现：Easter Egg 带来的惊喜
+### Easter Egg 带来的惊喜
 
 在一次普通的对话中，OpenCode 突然打印出了一个特殊的欢迎信息：
 
@@ -37,27 +37,27 @@ date: 2026-04-09
 - 🎯 **Claude Code Compatibility**: Your existing Claude Code config just works
 ```
 
-看到这个信息后，我意识到 Oh My OpenCode 不仅仅是一个插件，而是一个完整的**多智能体编排系统**。
+看到这个信息后，意识到 Oh My OpenCode 不仅仅是一个插件，而是一个完整的**多智能体编排系统**。
 
-### 追问与深入：自动切换是如何工作的？
+### 自动切换机制是如何工作的？
 
-我继续追问了一个问题：oh-my-opencode 是否会自动从 Build agent 切换到 oh-my-opencode 的 agent？
+继续追问：oh-my-opencode 是否会自动从 Build agent 切换到 oh-my-opencode 的 agent？
 
-通过查看代码，我发现：
+通过查看代码，发现：
 
 1. **隐藏的 Build Agent**：OpenCode-Builder 被配置为 `hidden: true`，模式是 "subagent"
 2. **关键词检测器**：keyword-detector hook 会跳过 OpenCode-Builder agent 的关键词注入
 3. **Agent 切换机制**：项目中有专门的 agent 配置处理器，会根据关键词自动委派给不同的专业 agent
 
-这意味着当你需要：
+这意味着当需要：
 - 代码探索时 → 自动委派给 **Explorer**
 - 外部文档查询时 → 自动委派给 **Librarian**
 - 复杂架构决策时 → 自动委派给 **Oracle**
 - 前端实现时 → 自动委派给 **Frontend Engineer**
 
-### 安装与配置：重新安装插件
+### 安装与配置
 
-在探索过程中，我需要重新安装插件。使用以下命令：
+在探索过程中，需要重新安装插件。使用以下命令：
 
 ```bash
 bunx oh-my-opencode install
@@ -71,9 +71,9 @@ bunx oh-my-opencode doctor
 
 这会检查插件状态并自动修复缺失的依赖。
 
-## 最终方案
+## 最终理解
 
-通过这次探索，我理解到 Oh My OpenCode 的核心价值在于：
+通过这次探索，理解到 Oh My OpenCode 的核心价值在于：
 
 ### 1. 多智能体编排
 
@@ -104,7 +104,7 @@ bunx oh-my-opencode doctor
 
 ## 总结
 
-- **问题解决了吗？** ✅ 是的，现在我理解了 Oh My OpenCode 不是简单的插件，而是一个完整的 AI 开发团队系统。
+- **问题解决了吗？** ✅ 是的，现在理解了 Oh My OpenCode 不是简单的插件，而是一个完整的 AI 开发团队系统。
 - **有什么局限性？** 目前需要一定的配置复杂度，对新手不够友好。
 - **还可以如何改进？** 期待更智能的 agent 自动选择机制，以及更丰富的预置配置模板。
 

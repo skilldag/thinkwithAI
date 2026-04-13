@@ -6,11 +6,11 @@ date: 2026-04-09
 
 # 深入理解 Oh My OpenCode 核心机制：从工作流到模型编排
 
-> 这篇文章源自我与 AI 的一次深度对话，通过不断追问"为什么"和"怎么做"，逐步理解了 Oh My OpenCode 的核心设计。
+> 这篇文章来自一次深度对话，通过不断追问"为什么"和"怎么做"，逐步理解了 Oh My OpenCode 的核心设计。
 
 ## 问题背景
 
-在使用 Oh My OpenCode 的过程中，我产生了几个核心疑问：
+在使用 Oh My OpenCode 的过程中，产生了几个核心疑问：
 
 1. 这个插件的工作流程是什么？
 2. Hashline 编辑器是如何解决 AI 改错行问题的？
@@ -19,13 +19,13 @@ date: 2026-04-09
 5. 如果没有昂贵的模型（如 GPT-5.4），还能正常使用吗？
 6. 如何添加新的模型 Provider？
 
-带着这些问题，我深入代码库进行了探究。
+带着这些问题，深入代码库进行了探索。
 
-## 探究过程
+## 核心分析
 
 ### 1. 插件的初始化工作流
 
-通过查看 `src/index.ts`，我发现了插件的 5 步初始化流程：
+通过查看 `src/index.ts`，发现了插件的 5 步初始化流程：
 
 ```
 OhMyOpenCodePlugin (entry)
@@ -44,7 +44,7 @@ OhMyOpenCodePlugin (entry)
 
 ### 2. Hashline 编辑器的工作原理
 
-这是我认为最核心的创新。传统编辑方式依赖行号：
+这是最核心的创新。传统编辑方式依赖行号：
 
 ```
 Agent 记得第 15 行是 "const x = 1"，但实际可能被其他操作修改
@@ -74,7 +74,7 @@ if (currentHash !== "CD") {
 
 ### 3. Ralph Loop vs Todo Enforcer
 
-我最初好奇为什么有两个"循环"机制，深入后发现它们解决**不同的问题**：
+好奇为什么有两个"循环"机制，深入后发现它们解决**不同的问题**：
 
 | 维度 | Ralph Loop | Todo Enforcer (Boulder) |
 |------|------------|-------------------------|
@@ -107,7 +107,7 @@ Hephaestus (深度执行)
 
 ### 5. 模型 Fallback 机制
 
-这是最实用的发现。如果我没有昂贵的模型怎么办？
+最实用的发现。如果在没有昂贵的模型怎么办？
 
 ```
 模型选择优先级:
@@ -131,7 +131,7 @@ Librarian:
 
 ### 6. 配置新的 Provider
 
-如果我想添加一个其他模型 Provider，有两种方式：
+如果想添加一个其他模型 Provider，有两种方式：
 
 **方式 A：使用 OpenAI 兼容 API（最简单）**
 
@@ -157,7 +157,7 @@ export OPENAI_API_KEY="sk-xxx"
 
 ## 总结
 
-- **问题解决了吗？** ✅ 是的，通过源码级别的探究，我理解了 Oh My OpenCode 的核心设计理念。
+- **问题解决了吗？** ✅ 是的，通过源码级别的探索，理解了 Oh My OpenCode 的核心设计理念。
 - **有什么局限性？** Hephaestus 的 fallback 链较窄，主要依赖 OpenAI 系模型。
 - **还可以如何改进？** 期待更多 Provider 的内置支持，以及更智能的模型自动选择。
 
@@ -168,6 +168,6 @@ export OPENAI_API_KEY="sk-xxx"
 1. **Hashline** 解决的是 AI 编辑的"改错行"问题，本质是"内容一致性协议"
 2. **Ralph Loop** 是主动循环，**Todo Enforcer** 是被动防摸鱼
 3. **Agent 编排**是 Sisyphus 调度子 Agent，不是 category 自动分发
-4. **Fallback 机制**保证你用现有模型也能工作，只要兼容 OpenAI API
+4. **Fallback 机制**保证用现有模型也能工作，只要兼容 OpenAI API
 
 *享受 AI 编程带来的效率提升！* 🚀

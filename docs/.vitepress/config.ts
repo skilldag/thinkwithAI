@@ -58,7 +58,8 @@ export default defineConfig({
     link: '/posts/zen-awareness-emptiness',
     collapsible: true,
     items: [
-      { text: '觉照、妄念与无念无觉', link: '/posts/zen-awareness-emptiness' }
+      { text: '觉照、妄念与无念无觉', link: '/posts/zen-awareness-emptiness' },
+      { text: '从心理发展到佛教哲学', link: '/posts/buddhism-awareness-awakening' }
     ]
   },
       {

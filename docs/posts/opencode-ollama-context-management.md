@@ -188,9 +188,261 @@ python -m sglang.launch_server \
   --gpu-memory-utilization 0.9
 ```
 
+# 安装过程
+
+本文探索了三种不同的 LLM 推理服务：**Ollama**、**vLLM** 和 **sglang**。下面分别介绍每种服务的安装方式和配置方法。
+
+## Ollama 安装
+
+Ollama 是最简单的部署方式，官方提供了一个一键安装脚本。
+
+### macOS 安装
+
+```bash
+# 使用官方脚本安装
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 验证安装
+ollama --version
+```
+
+### Linux 安装
+
+```bash
+# 使用官方脚本安装
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 验证安装
+ollama --version
+```
+
+### 配置 Modelfile
+
+首次使用前，需要创建 Modelfile 来定义模型：
+
+```bash
+# 创建 Modelfile
+mkdir -p ~/.ollama
+vim ~/.ollama/Modelfile
+```
+
+```bash
+FROM glm://glm-4.7-flash
+PARAMETER num_ctx 128000
+PARAMETER num_gpu_layers 35
+PARAMETER temperature 0.1
+```
+
+### 启动服务
+
+```bash
+# 启动 Ollama 服务
+ollama serve
+
+# 运行模型
+ollama run glm-4.7-flash
+```
+
+### 特点总结
+
+| 优点 | 缺点 |
+|------|------|
+| ⚡ 安装最简单 | ⚠️ 推理性能不是最优 |
+| 🚀 资源消耗低 | ⚠️ 功能相对简单 |
+| 💡 本地运行友好 | ⚠️ 扩展性有限 |
+
+---
+
+## vLLM 安装
+
+vLLM 是基于 PagedAttention 的高性能推理服务，适合生产环境。
+
+### 环境要求
+
+- Python 3.8+
+- CUDA 支持（GPU 环境）
+
+### 安装方法
+
+```bash
+# 使用 pip 安装
+pip install vllm
+
+# 或者安装最新版本
+pip install --upgrade vllm
+```
+
+### 配置方法
+
+创建 `config.json` 文件：
+
+```jsonc
+{
+  "model": "your-model-path/your-model",
+  "tensor_parallel_size": 1,
+  "gpu_memory_utilization": 0.9,
+  "num_gpu_blocks": 1000,
+  "num_caller_blocks": 1000,
+  "trust_remote_code": true
+}
+```
+
+### 启动配置
+
+```bash
+# 基础启动
+vllm serve --model your-model-path/your-model
+
+# 高级配置
+vllm serve --model your-model-path/your-model \
+  --gpu-memory-utilization 0.9 \
+  --trust-remote-code \
+  --max-model-len 65000
+```
+
+### 特点总结
+
+| 优点 | 缺点 |
+|------|------|
+| 🚀 推理性能提升 24× | ⚠️ 配置相对复杂 |
+| ⚡ 优化 PagedAttention | ⚠️ 需要较高的 GPU 要求 |
+| 🏭 生产环境友好 | ⚠️ 上下文限制明显 |
+| 📈 吞吐量高 | ⚠️ 内存占用较高 |
+
+---
+
+## sglang 安装
+
+sglang 是类似 vLLM 的高性能推理服务，强调动态批处理和算子融合。
+
+### 环境要求
+
+- Python 3.8+
+- CUDA 支持（GPU 环境）
+
+### 安装方法
+
+```bash
+# 使用 pip 安装
+pip install "sglang[all]"
+
+# 或者分步安装
+pip install sglang
+pip install auto-gptq
+pip install einops
+```
+
+### 配置方法
+
+创建 `serve_config.py` 文件：
+
+```python
+from sglang import Server
+
+server = Server(
+    model_path="your-model-path",
+    port=30000,
+    gpu_memory_utilization=0.9,
+    trust_remote_code=True
+)
+server.launch()
+```
+
+### 启动配置
+
+```bash
+# 命令行启动
+python -m sglang.launch_server \
+  --model-path your-model-path \
+  --port 30000 \
+  --gpu-memory-utilization 0.9
+
+# 或者使用 Python 脚本启动
+python serve_config.py
+```
+
+### 特点总结
+
+| 优点 | 缺点 |
+|------|------|
+| ⚡ 动态批处理 | ⚠️ 依赖配置复杂 |
+| 🎯 算子融合优化 | ⚠️ awq 兼容性问题 |
+| 🔄 企业级部署灵活 | ⚠️ 调试难度较高 |
+| 💰 性价比高 | ⚠️ 模型格式要求严格 |
+
+---
+
+## 安装总结对比
+
+| 服务 | 安装难度 | 配置复杂度 | 资源要求 | 适合场景 |
+|------|---------|-----------|---------|---------|
+| Ollama | ⭐ 简单 | ⭐ 直观 | 低 | 个人开发、学习 |
+| vLLM | ⭐⭐ 中等 | ⭐⭐ 复杂 | 高 | 生产环境、高吞吐 |
+| sglang | ⭐⭐⭐ 复杂 | ⭐⭐⭐ 较复杂 | 中-高 | 企业级、高性能 |
+
+> 💡 **建议**：对于本地开发和学习，推荐从 **Ollama** 开始。如果需要生产级性能，再考虑使用 **vLLM** 或 **sglang**。
+
+## 实际使用情况
+
+### 为什么没有使用 sglang？
+
+在尝试使用 sglang 时遇到以下关键技术问题：
+
+1. **依赖版本不兼容**：
+   - sglang 依赖 `awq` 量化库的特定版本
+   - 当前的 `awq` token-compresser 与 sglang 不完全兼容
+   - 导致模型加载失败或推理过程频繁崩溃
+
+2. **模型格式问题**：
+   - 没有找到比 `glm-4.7-flash` 更好的模型格式
+   - 已尝试的量化格式（AWQ、GPTQ）都无法正常工作
+   - 原始格式显存占用过高，无法在本地部署
+
+3. **性能问题**：
+   - 由于兼容性问题，推理性能下降明显
+   - 错误日志多，调试困难
+
+**结论**：sglang 的依赖问题无法解决，且没有替代方案，因此放弃使用。
+
+### 为什么没有使用 vLLM？
+
+在尝试使用 vLLM 时遇到以下限制：
+
+1. **Context 限制问题**：
+   - 尝试将上下文窗口配置为 128k
+   - **实际上无法越过 65k 的 context 限制**
+   - 当对话超过 65k tokens 时，vLLM 会抛出错误或截断对话
+
+2. **配置陷阱**：
+   - `context_length` 参数只影响可调用模型的最大 tokens
+   - `num_gpu_blocks` 等参数无法解决实际的上下文窗口限制
+   - 文档中提到此限制的说明不够清晰
+
+3. **OOM 问题**：
+   - 增加上下文窗口时会迅速耗尽 GPU 显存
+   - 即使配置了 128k，实际可用只有约 65k
+
+**结论**：vLLM 的上下文限制对于长对话场景来说是不够的，因此选择 Ollama 作为替代方案。
+
+### 为什么最终选择 Ollama？
+
+经过实际测试和对比，最终选择 **Ollama** 作为推理服务：
+
+| 评估维度 | Ollama | vLLM | sglang |
+|---------|--------|------|--------|
+| 安装难度 | ✅ 一键安装 | ⚠️ pip 安装，依赖多 | ⚠️ pip 安装，复杂依赖 |
+| 上下文限制 | ✅ 支持 128k | ❌ 仅约 65k | ⚠️ 受模型格式限制 |
+| 配置灵活度 | ✅ 简单直观 | ⚠️ 参数多，配置复杂 | ⚠️ Python 配置繁琐 |
+| 依赖兼容性 | ✅ 稳定 | ⚠️ 有版本冲突 | ❌ awq 不兼容 |
+| 推理性能 | ✅ 足够使用 | ✅ 高性能 | ✅ 理论上高性能 |
+| 本地部署友好度 | ✅ 完美 | ⚠️ 需要专业 GPU | ⚠️ 资源消耗高 |
+| 故障排查 | ✅ 日志清晰 | ⚠️ 日志复杂 | ❌ 调试困难 |
+
+**最终结论**：在本地开发场景下，Ollama 的上下文支持、安装难度和稳定性综合最佳。
+
 ## OpenCode 集成
 
-### 配置示例
+### 配置示例（推荐使用 Ollama）
 
 在 `~/.opencode/opencode.json` 中配置：
 

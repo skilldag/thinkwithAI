@@ -43,9 +43,10 @@ export default defineConfig({
           { text: 'OpenCode Sessions CLI', link: '/posts/opencode-sessions' },
           { text: 'OpenCode 存储结构', link: '/posts/opencode-storage-structure' },
           { text: '重新认识 Oh My OpenCode', link: '/posts/oh-my-opencode-understanding' },
-{ text: '深入理解 Oh My OpenCode 核心机制', link: '/posts/oh-my-opencode-core-mechanism' },
-      { text: 'ULW Loop CLI 程序验证思路', link: '/posts/ulw-loop-cli-verification' }
-      ]
+          { text: '深入理解 Oh My OpenCode 核心机制', link: '/posts/oh-my-opencode-core-mechanism' },
+          { text: 'ULW Loop CLI 程序验证思路', link: '/posts/ulw-loop-cli-verification' },
+          { text: 'OpenCode + Ollama 上下文管理', link: '/posts/opencode-ollama-context-management' }
+        ]
       },
 {
     text: '研发思考',
